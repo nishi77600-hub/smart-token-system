@@ -1,20 +1,11 @@
 {
- HEAD
-  "name": "backend",
-=======
   "name": "smart-token-system",
->>>>>>> b5cdb7053e7004fdfd0e95d5111e4d099c2aab98
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
-  "start": "nodemon server.js"
-},
-=======
     "start": "nodemon server.js"
   },
->>>>>>> b5cdb7053e7004fdfd0e95d5111e4d099c2aab98
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -25,18 +16,11 @@
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
-<<<<<<< HEAD
     "mongoose": "^9.2.4",
-=======
-    "mongoose": "^9.2.3",
->>>>>>> b5cdb7053e7004fdfd0e95d5111e4d099c2aab98
     "socket.io": "^4.8.3"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
-<<<<<<< HEAD
-  }
-=======
   },
   "repository": {
     "type": "git",
@@ -46,5 +30,4 @@
     "url": "https://github.com/nishi77600-hub/smart-token-system/issues"
   },
   "homepage": "https://github.com/nishi77600-hub/smart-token-system#readme"
->>>>>>> b5cdb7053e7004fdfd0e95d5111e4d099c2aab98
 }
