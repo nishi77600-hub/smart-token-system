@@ -1,0 +1,29 @@
+body{
+font-family: Arial;
+text-align:center;
+background:linear-gradient(135deg,#4facfe,#00f2fe);
+color:white;
+}
+
+.container{
+margin-top:120px;
+}
+
+button{
+padding:12px 25px;
+margin:10px;
+font-size:16px;
+border:none;
+border-radius:8px;
+background:white;
+color:#333;
+font-weight:bold;
+}
+
+button:hover{
+background:#ddd;
+}
+
+h1{
+font-size:40px;
+}
