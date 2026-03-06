@@ -1,8 +1,9 @@
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
-
+const connectDB = require("./config/db");
 const app = express();
+connectDB();
 
 console.log("INDEX FILE RUNNING");
 
@@ -34,4 +35,4 @@ app.get("/test",(req,res)=>{
 
 server.listen(3000,()=>{
     console.log("Server running on port 3000");
-});
+});``
