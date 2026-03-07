@@ -1,28 +1,185 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
-<head>
 
-<title>Student Panel</title>
-<link rel="stylesheet" href="css/style.css">
+<head>
+<title>Student Token System</title>
+<style>
+   body{
+
+margin:0;
+font-family: Arial, sans-serif;
+
+/* blue techno gradient like display screen */
+
+background: #0f172a;
+
+height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+color:#f1d5f9;
+
+}
+
+.main-container{
+
+width:75%;
+
+background:#263347;
+
+color:#f1d5f9;
+
+padding:40px;
+
+border-radius:12px;
+
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+
+text-align:center;
+
+}
+
+header h1{
+
+margin-bottom:5px;
+color:#f1d5f9;
+
+}
+
+header p{
+
+color:#f1d5f9;
+margin-bottom:30px;
+
+}
+
+.service-section{
+
+margin-bottom:40px;
+
+}
+
+select{
+
+padding:12px;
+
+width:260px;
+
+font-size:16px;
+background-color: #e4c4a0;
+
+border-radius:6px;
+
+border:1px solid #cbd5e1;
+
+margin-top:10px;
+
+}
+
+button{
+
+margin-top:20px;
+
+padding:12px 30px;
+
+font-size:16px;
+
+background:#5f3daf;
+
+color:#f1d5f9;
+
+border:none;
+
+border-radius:8px;
+
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+button:hover{
+
+background:#7459ac;
+
+}
+
+.token-display{
+
+background:#e4c4a0;
+
+padding:30px;
+
+border-radius:10px;
+
+margin-top:20px;
+
+}
+.token-display h2{
+
+color:#434548;
+font-weight: bold;
+
+}
+
+
+#tokenResult{
+
+font-size:30px;
+
+font-weight:bold;
+
+color:#38414f;
+
+}
+</style>
 
 </head>
 
 <body>
 
-<h1>Student Token Panel</h1>
+<div class="main-container">
+
+<header>
+<h1>University Queue Management System</h1>
+<p>Select the service and generate your token</p>
+</header>
+
+<div class="service-section">
 
 <h2>Select Service</h2>
 
-<button onclick="getToken('ATM')">ATM</button>
+<select id="service">
+<option value="">-- Select Service --</option>
+<option value="ATM">ATM</option>
+<option value="Dispensary">Dispensary</option>
+<option value="Accounts">Accounts Office</option>
+<option value="Library">Library</option>
+</select>
 
-<button onclick="getToken('Accounts')">Accounts Office</button>
+<br>
+<!-- <button onclick="bookToken('atm')">ATM</button>
 
-<button onclick="getToken('Dispensary')">Dispensary</button>
+<button onclick="bookToken('dispensary')">Dispensary</button>
 
-<h3 id="tokenResult"></h3>
-<h3 id="queue"></h3>
+<button onclick="bookToken('accounts')">Accounts Office</button> -->
+</div>
+<button onclick="generateToken()">Generate Token</button>
+
+<div class="token-display">
+
+<h2>Your Token</h2>
+
+<p id="tokenResult">No token generated yet</p>
+
+</div>
+
+</div>
 
 <script src="js/student.js"></script>
 
 </body>
+
 </html>

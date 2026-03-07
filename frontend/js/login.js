@@ -1,13 +1,16 @@
-function login(){
+const roleSelect = document.getElementById("roleSelect");
+const adminForm = document.getElementById("adminForm");
 
-let role = document.getElementById("role").value;
+roleSelect.addEventListener("change",function(){
 
-if(role === "student"){
-    window.location.href = "student.html";
+if(this.value === "admin"){
+adminForm.classList.remove("hidden");
 }
-
+else if(this.value === "student"){
+window.location.href = "student.html";
+}
 else{
-    window.location.href = "staff.html";
+adminForm.classList.add("hidden");
 }
 
-}
+});

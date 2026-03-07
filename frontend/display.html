@@ -1,20 +1,263 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
-<title>Token Display</title>
-<link rel="stylesheet" href="css/style.css">
+<title>Queue Display</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+
+margin:0;
+
+font-family:Poppins;
+
+background: #0f172a;
+
+color:white;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+height:100vh;
+
+}
+
+.services{
+
+width:90%;
+max-width:1300px;
+
+display:grid;
+
+grid-template-columns: repeat(3, 1fr);
+
+gap:40px;
+
+margin:auto;
+margin-bottom: 100px;
+
+}
+
+.serviceBox{
+
+background:#263347;
+
+padding:45px;
+
+border-radius:14px;
+
+text-align:center;
+
+box-shadow:0 12px 30px rgba(0,0,0,0.3);
+
+transition:0.3s;
+
+}
+
+.serviceBox:hover{
+
+transform:translateY(-5px);
+
+}
+
+.serviceBox:hover{
+transform:translateY(-5px);
+}
+
+.serviceBox h2{
+margin-bottom:15px;
+color:#60a5fa;
+}
+
+.now{
+font-size:16px;
+opacity:0.7;
+}
+
+.token{
+
+font-size:70px;
+
+font-weight:700;
+
+color:#fbbf24;
+
+margin:15px 0 25px 0;
+
+}
+
+.nextTitle{
+margin-bottom:10px;
+font-weight:600;
+}
+
+.nextTokens span{
+
+display:inline-block;
+background:white;
+padding:10px 15px;
+margin:5px;
+border-radius:6px;
+font-size:20px;
+}
+
+.nextTokens{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+}
+
+.nextTokens span{
+
+background:#1f2937;
+
+padding:12px 16px;
+
+border-radius:8px;
+
+font-size:20px;
+
+}
+
+h1{
+
+margin-top: 70px ;
+font-size:42px;
+
+
+letter-spacing:2px;
+
+text-align:center;
+
+color:#f1d5f9;
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-<h1>Now Serving</h1>
+<h1>Digital Queue Display</h1>
 
-<h2 id="displayToken">Waiting...</h2>
+<div class="services">
 
-<script src="http://localhost:3000/socket.io/socket.io.js"></script>
-<script src="js/display.js"></script>
+<div class="serviceBox">
+
+<h2>ATM</h2>
+
+<div class="now">Now Serving</div>
+<div class="token" id="atmCurrent">--</div>
+
+<div class="nextTitle">Next</div>
+
+<div class="nextTokens">
+<span id="atm1">--</span>
+<span id="atm2">--</span>
+<span id="atm3">--</span>
+</div>
+
+</div>
+
+
+<div class="serviceBox">
+
+<h2>Dispensary</h2>
+
+<div class="now">Now Serving</div>
+<div class="token" id="dispCurrent">--</div>
+
+<div class="nextTitle">Next</div>
+
+<div class="nextTokens">
+<span id="disp1">--</span>
+<span id="disp2">--</span>
+<span id="disp3">--</span>
+</div>
+
+</div>
+
+
+<div class="serviceBox">
+
+<h2>Accounts Office</h2>
+
+<div class="now">Now Serving</div>
+<div class="token" id="accCurrent">--</div>
+
+<div class="nextTitle">Next</div>
+
+<div class="nextTokens">
+<span id="acc1">--</span>
+<span id="acc2">--</span>
+<span id="acc3">--</span>
+</div>
+
+</div>
+</div>
+
+</div>
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+
+async function loadQueues(){
+
+const res = await fetch("http://localhost:3000/api/queue/status");
+
+const data = await res.json();
+
+
+updateService("atm",data.atm,"atmCurrent","atm1","atm2","atm3");
+
+updateService("dispensary",data.dispensary,"dispCurrent","disp1","disp2","disp3");
+
+updateService("accounts",data.accounts,"accCurrent","acc1","acc2","acc3");
+
+}
+
+
+function updateService(name,queue,current,n1,n2,n3){
+
+if(queue.length>0){
+
+document.getElementById(current).innerText = queue[0];
+
+document.getElementById(n1).innerText = queue[1] || "--";
+
+document.getElementById(n2).innerText = queue[2] || "--";
+
+document.getElementById(n3).innerText = queue[3] || "--";
+
+}
+
+}
+
+loadQueues();
+
+setInterval(loadQueues,2000);
+
+</script>
 
 </body>
+
 </html>
