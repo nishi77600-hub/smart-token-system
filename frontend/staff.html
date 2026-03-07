@@ -11,21 +11,29 @@
 
 body{
 margin:0;
+padding: 0;
+box-sizing: border-box;
 font-family:Poppins;
 background: #0f172a;
-display:flex;
-flex-direction: row;
+margin-left: 30px;
 justify-content:center;
 align-items:center;
 }
+.main {
+    display:flex;
+    align-items:center;
+    gap:40px;
+    margin-left: 130px;
+    margin-top: 25px;
+}
 
 .panel{
-margin-left: 120px;
 margin-top: 50px;
 padding:40px;
 border-radius:12px;
 text-align:center;
 width: 500px;
+gap: 10px;
 }
 
 h1{
@@ -123,12 +131,17 @@ color:white;
 background:#1d4ed8;
 
 }
-
+.picture img{
+    width:600px;
+    border-radius:12px;
+    margin-top : 60px;
+}
 </style>
 
 </head>
 
 <body>
+<div class="main">
 
 <div class="panel">
 
@@ -152,8 +165,9 @@ background:#1d4ed8;
 <button class="resume" onclick="resumeQueue()">Resume Queue</button>
 
 </div>
+</div>
 <div class="picture">
-    <img src="static/staff.jpeg">
+    <img src="static/staff.png">
 </div>
 
 </div>
