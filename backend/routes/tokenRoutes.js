@@ -3,12 +3,14 @@ const router = express.Router();
 
 const tokenController = require("../controllers/tokenController");
 
-router.post("/create", tokenController.createToken);
+router.post("/generate-token",tokenController.generateToken);
 
-router.get("/current", tokenController.getCurrentToken);
+router.post("/next",tokenController.nextToken);
 
-router.get("/queue", tokenController.getQueue);
+router.get("/status",tokenController.queueStatus);
 
-router.post("/next", tokenController.nextToken);
+router.post("/pause",tokenController.pauseQueue);
+
+router.post("/resume",tokenController.resumeQueue);
 
 module.exports = router;

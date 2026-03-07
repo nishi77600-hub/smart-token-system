@@ -1,19 +1,31 @@
 const mongoose = require("mongoose");
 
 const tokenSchema = new mongoose.Schema({
-  tokenNumber: {
-    type: Number,
-    required: true
+
+  tokenNumber:{
+    type:Number,
+    required:true
   },
-  status: {
-    type: String,
-    enum: ["waiting", "in process", "completed"],
-    default: "waiting"
+
+  service:{
+    type:String,
+    enum:["ATM","Dispensary","Accounts"]
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
+
+  email:{
+    type:String
+  },
+
+  status:{
+    type:String,
+    default:"waiting"
+  },
+
+  createdAt:{
+    type:Date,
+    default:Date.now
   }
+
 });
 
-module.exports = mongoose.model("Token", tokenSchema);
+module.exports = mongoose.model("Token",tokenSchema);
