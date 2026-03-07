@@ -25,7 +25,6 @@
 function generateToken(){
 
 let service = document.getElementById("service").value
-
 if(service === ""){
 alert("Please select a service")
 return
@@ -36,11 +35,15 @@ let tokens = JSON.parse(localStorage.getItem(service)) || []
 let tokenNumber = tokens.length + 1
 
 tokens.push(tokenNumber)
+document.getElementById("queueBtn").style.display = "block";
 
 localStorage.setItem(service, JSON.stringify(tokens))
 
 document.getElementById("tokenResult").innerHTML =
 "Your Token for " + service + " is: <b>" + tokenNumber + "</b>"
+}
+function goToQueue() {
+    window.location.href="display.html";
 }
 
 async function bookToken(service){
