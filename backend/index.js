@@ -32,6 +32,24 @@ let currentServing = {
 
 
 
+const Counter = require("./models/counter");
+
+async function createCounter() {
+    const counter = new Counter({
+        counterNumber: 1,
+        currentToken: 0,
+        status: "open"
+    });
+
+    await counter.save();
+    console.log("Counter created");
+}
+
+createCounter();
+
+
+
+
 
 
 
