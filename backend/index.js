@@ -2,7 +2,15 @@ const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
 const connectDB = require("./config/db");
+const nodemailer = require("nodemailer");
 
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth:{
+    user:"yourgmail@gmail.com",
+    pass:"abcd efgh ijkl mnop"
+  }
+});
 const authRoutes = require("./routes/authRoutes");
 const tokenRoutes = require("./routes/tokenRoutes");
 
