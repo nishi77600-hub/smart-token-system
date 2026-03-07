@@ -1,28 +1,31 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const User = require("../models/user");
 
 exports.register = async (req, res) => {
-    const { name, email, password } = req.body;
+  try {
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const { name, email, password, role } = req.body;
+
+    const newUser = new User({
+      name,
+      email,
+      password,
+      role
+    });
+
+    console.log("Saving user:", newUser);
+
+    await newUser.save();
 
     res.json({
-        message: "User registered successfully",
-        user: { name, email }
+      message: "User registered successfully",
+      user: {
+        name: newUser.name,
+        email: newUser.email
+      }
     });
-};
 
-exports.login = async (req, res) => {
-    const { email } = req.body;
-
-    const token = jwt.sign(
-        { email: email },
-        "SECRETKEY",
-        { expiresIn: "1d" }
-    );
-
-    res.json({
-        message: "Login successful",
-        token: token
-    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
 };

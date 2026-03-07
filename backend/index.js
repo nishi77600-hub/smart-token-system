@@ -2,12 +2,21 @@ const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
 const connectDB = require("./config/db");
+
+const authRoutes = require("./routes/authRoutes");
+const tokenRoutes = require("./routes/tokenRoutes");
+
 const app = express();
 connectDB();
 
 console.log("INDEX FILE RUNNING");
 
 app.use(express.json());
+
+
+app.use("/api/auth", authRoutes);
+app.use("/api/token", tokenRoutes);
+
 
 let queues = {
   atm: [],
@@ -21,23 +30,29 @@ let currentServing = {
   accounts: null
 };
 
-router.post("/generate-token", (req, res) => {
 
-  const service = req.body.service;
 
-  const tokenNumber = queues[service].length + 1;
+const Counter = require("./models/counter");
 
-  queues[service].push(tokenNumber);
+async function createCounter() {
+    const counter = new Counter({
+        counterNumber: 1,
+        currentToken: 0,
+        status: "open"
+    });
 
-  res.json({
-    service: service,
-    token: tokenNumber
-  });
+    await counter.save();
+    console.log("Counter created");
+}
 
-});
+createCounter();
 
-const tokenRoutes = require("./routes/tokenRoutes");
-app.use("/api/token", tokenRoutes);
+
+
+
+
+
+
 
 const server = http.createServer(app);
 
