@@ -3,10 +3,6 @@ const router = express.Router();
 
 const tokenController = require("../controllers/tokenController");
 
-
-
-
-
 router.post("/create", tokenController.createToken);
 
 router.get("/current", tokenController.getCurrentToken);

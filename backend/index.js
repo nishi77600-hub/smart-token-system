@@ -9,6 +9,33 @@ console.log("INDEX FILE RUNNING");
 
 app.use(express.json());
 
+let queues = {
+  atm: [],
+  dispensary: [],
+  accounts: []
+};
+
+let currentServing = {
+  atm: null,
+  dispensary: null,
+  accounts: null
+};
+
+router.post("/generate-token", (req, res) => {
+
+  const service = req.body.service;
+
+  const tokenNumber = queues[service].length + 1;
+
+  queues[service].push(tokenNumber);
+
+  res.json({
+    service: service,
+    token: tokenNumber
+  });
+
+});
+
 const tokenRoutes = require("./routes/tokenRoutes");
 app.use("/api/token", tokenRoutes);
 
@@ -18,6 +45,10 @@ const io = new Server(server,{
     cors:{
         origin:"*"
     }
+});
+
+app.get("/display",(req,res)=>{
+res.sendFile(__dirname + "/public/display.html");
 });
 
 app.use((req,res,next)=>{
