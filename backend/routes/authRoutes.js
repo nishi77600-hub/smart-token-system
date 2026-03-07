@@ -13,7 +13,7 @@ router.get("/test", (req, res) => {
 router.post("/register", authController.register);
 
 // login
-router.post("/login", authController.login);
+//router.post("/login", authController.login);
 
 // protected route
 router.get("/profile", authMiddleware, (req, res) => {
